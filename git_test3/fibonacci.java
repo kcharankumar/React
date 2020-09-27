@@ -7,5 +7,7 @@ import java.io.*;
 class fibonacci
 {
   public static void main (String args[])
-{}	
+{
+    System.out.println ("This is the fiboaci series...");
+}	
 }
