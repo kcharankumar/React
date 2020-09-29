@@ -3,6 +3,8 @@ class factorial
     public static void main (String args[])
 {
     System.out.println ("This is the main function...");
+      
+    int i=1;
 }
 
 }
