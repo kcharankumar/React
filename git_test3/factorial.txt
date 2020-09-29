@@ -5,6 +5,7 @@ class factorial
     System.out.println ("This is the main function...");
       
     int i=1;
+for (i = 1; i < n; ++i)
 }
 
 }
