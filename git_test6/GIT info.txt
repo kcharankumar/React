@@ -1,0 +1,10 @@
+we have tried couple of commands like
+git init
+git add
+git commit
+git log
+git status
+git diff
+git branch
+git checkout
+git merge
