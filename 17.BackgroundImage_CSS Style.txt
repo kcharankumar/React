@@ -1,0 +1,33 @@
+ import React  from 'react'; 
+ import Login1 from './Login'
+
+ /*    
+   CSS style component is added with background image.
+*/
+
+ class App extends React.Component {   
+  
+
+render() {
+
+  const mystyle={
+  backgroundImage: 'url(Iced_Mountain.jpg)',   
+  backgroundSize: "cover",
+  height: "100vh", 
+  color:"white",
+  padding:"40px",
+  };
+ 
+  return(  
+    <div       
+      style={mystyle}       
+    >     
+       
+    <Login1 />
+    </div>
+  );
+}
+
+}
+
+export default App;

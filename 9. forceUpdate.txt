@@ -1,0 +1,43 @@
+ 
+import React  from 'react';
+import './App.css';
+ 
+//By default, when your component's state or props change, your component will re-render. 
+// If your render() method depends on some other data, you can tell React that the component 
+//needs re-rendering by calling forceUpdate() .
+//In this program, on click of a button, it calls a function and in that function newDate 
+//state variable is updated with latest date.  Date() has current time also.  We are using
+// toLocaleTimeString() to display the current time.  On every click of the button, new time is also
+//updated in the state variable and updated time is displayed on the screen.
+
+class App extends React.Component
+{
+  constructor (props)
+  {
+    super (props)
+
+   
+    this.state={
+      newDate:new Date()
+    }
+
+    this.forceUpdateState = this.forceUpdateState.bind(this);
+  } 
+   forceUpdateState()
+   {      
+     this.setState({newDate: new Date()});
+     this.forceUpdate();
+   }
+
+render() {
+  return( 
+      <div>  
+ 
+          <h2> The current time is  {this.state.newDate.toLocaleTimeString()}</h2>
+          <button onClick={this.forceUpdateState }> Current Time </button>
+      </div> 
+  );
+}
+}
+
+export default App;

@@ -1,0 +1,39 @@
+ import React  from 'react';
+import './App.css';
+  
+ /*
+     In App, a list is defined.  That list is passed to a functional component DisplayList. 
+     Display list, iterates through each element and stores the result as <li> in a variable listItems.
+     return() returns what to be displayed. It displays the list of items in line items. 
+*/
+
+function DisplayList (props)
+{ 
+  const MyList = props.MyList; 
+ const listItems =  MyList.map( (listData) => <li> {listData} </li>);
+ 
+  return( 
+      <div>
+        <h1> Displaying List of Items </h1>
+       <ul>
+         {listItems}           
+      </ul> 
+
+      </div>
+
+ ); 
+}
+
+ class App extends React.Component {   
+render() {
+  const MyList = ["LG", "Samsung", "Sony", "One Plus"];
+   
+  return (
+   <div>
+    <DisplayList MyList= {MyList} />
+   </div> 
+  ); 
+  }
+}
+
+export default App;

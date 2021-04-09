@@ -1,0 +1,43 @@
+ 
+import React  from 'react';
+import './App.css';
+
+//As a state variable date is declared and date object is created and assigned to it.
+//This state variable is converted as props data and sent to a component StateToPropsComponent
+//StateToPropsComponent is displaying the current time from the sent data.
+//Here we are converting state to props.  State stateful data to stateless props data or 
+//arguments of a function
+
+class App extends React.Component
+{  
+constructor(props)
+{
+  super (props)
+ 
+ this.state = {date : new Date()};
+}//End of constructor
+
+render() {
+  return( 
+      <div>  <StateToPropsComponent stp = {this.state.date} />
+      </div> 
+  );
+}
+
+}
+
+class StateToPropsComponent extends React.Component
+{
+  render()
+  {
+     return( 
+       <div>
+          <h1> This is State to Pros example...</h1>
+          <h2> Current Time is :  {this.props.stp.toLocaleTimeString()} </h2>
+       </div>
+     );
+  }
+}
+
+ 
+export default App;

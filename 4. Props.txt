@@ -1,0 +1,29 @@
+ 
+import React  from 'react';
+import './App.css';
+
+
+//Props are propterties.  They are like arguments.
+//Value for props are define defaultProps section and used in the render() return() function.
+class App extends React.Component
+{
+ render()
+{
+   return(
+     <div>
+      <h1>{this.props.name} Welcomes you...</h1>
+      <h2> I stay at {this.props.address}</h2>
+      <h2> I work as {this.props.profession}</h2>
+    </div>
+    
+   );
+ }
+}
+
+App.defaultProps =
+{
+  name: "Charan",
+  address:"Bangalore",
+  profession: "Java Trainer"
+} 
+export default App;

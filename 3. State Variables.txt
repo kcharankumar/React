@@ -1,0 +1,41 @@
+
+import React from 'react';
+import './App.css'
+//In App, displayBio variable is declared and assigned a value to it. 
+// Using ternary operator, what to display is given in the render ()
+// Value of variable bio is displayed in return()
+
+class App extends React.Component
+{
+ constructor()
+ {
+   super();
+
+   this.state = { displayBio:true};
+
+ } //End of constructor
+
+ render()
+{
+  const bio = this.state.displayBio ? (
+     <div>
+       <p>
+         <h3> We are learning React</h3>    
+       </p> 
+     </div>
+     ) : null;
+
+   return( 
+     <div>
+      <h1> Welcome from Charan Kumar</h1> 
+
+       {bio} 
+
+      
+
+     </div>
+   );
+ }
+}
+
+export default App;

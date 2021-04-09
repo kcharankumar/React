@@ -1,0 +1,50 @@
+ import React  from 'react';
+import './App.css';
+  
+ /*
+    
+   In the App constructor a state variable CurrentDataTime is declared and assigned current date time using the new Date().
+   In componentDidMount(), when the components are rendered in DOM this method is called and at that time timer is started and for every
+   second tick() method is called.  
+   In tick(), every second state variable is updated with the current date and time.
+    In componentWillUnmount(), timer is removed from memory.  In render(), <React.Fragment> is used instead of <div>.  
+    Instead <React.Fragment>, we can use <> and </>.  This is equalent of <React.Fragment> and </React.Fragment>
+ 
+*/
+ 
+ class App extends React.Component {   
+
+  constructor (props)
+  {
+    super (props);
+    this.state = {currentDateTime : new Date()};
+            
+  }
+   
+  componentDidMount()
+  { 
+    this.timerId = setInterval(() => this.tick(), 1000);
+  }
+
+  tick(){
+    this.setState ({currentDateTime : new Date()} );
+  }
+
+  componentWillUnmount()
+  {
+     clearInterval (this.timerId);
+  }
+
+render() {
+  return(
+    
+    <React.Fragment>
+         <h1> Current Time is </h1>
+         <b> {this.state.currentDateTime.toLocaleTimeString()}  </b>
+    </React.Fragment> 
+  );
+}
+
+}
+
+export default App;

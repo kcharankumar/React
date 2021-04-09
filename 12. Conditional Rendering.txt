@@ -1,0 +1,89 @@
+ 
+import React  from 'react';
+import './App.css';
+ 
+ 
+ /*
+         Conditional rendering example.  Based on the data, corresponding buttons are displayed in this program.
+
+
+  1. DisplayMessage functional component - displays a message based on isLoggedIn props.  If it is true then it return Welcome back
+               if it is false then it return Please login.
+  2. DisplayLogin functional component - Displays a Login button and on click of the button it calls handleLogin() of App.
+  3. DisplayLogout functional component - Displays a Logout button, on click of this button it calls handleLogout() of App.
+  4. handleLogin() in App will set the state variable isLoggedIn to true.
+  5. handleLogout() in App will set the state variable isLoggedIn to false.
+  6. render() in App - It is calling DisplayMessage Functional component and DisplayLogout functional component. They will display the 
+              buttons accordingly and when the buttons are clicked, corresponding given methods are exected.
+
+
+*/
+
+//Dislaying a message.
+function DisplayMessage(props)
+{
+  if (props.isLoggedIn)
+      return <h1> Welcome Back </h1>
+   else
+      return <h1> Please Login </h1>
+}
+
+
+//Displays Login button.  On button click, calls handleLogin() of App Component. 
+function DisplayLoginButton (props)
+{
+  return (
+        <button onClick={props.handleLogin}>Login</button>
+  );
+}
+
+//Displays Logout button.  On button click, calls handleLogout() of App Component.
+function DisplayLogoutButton (props)
+{
+  return (
+        <button onClick={props.handleLogOut}>Logout</button>
+  );
+}
+
+
+class App extends React.Component
+{ 
+
+   constructor (props)
+   {
+     super (props);
+     this.handleLogin = this.handleLogin.bind(this);
+     this.handleLogOut = this.handleLogout.bind (this);
+     this.state = {isLoggedIn : false};
+   }
+
+//sets the state variable isLoggedIn to true.
+   handleLogin()
+{
+  this.setState({isLoggedIn:true});
+}
+
+//sets the state variable isLoggedIn to false.
+handleLogout()
+{
+  this.setState({isLoggedIn:false});
+}
+
+//Displays a message from functional component DisplayMessage and 
+// also displays button Login or Logout based on isLoggedIn state variable.  
+render() {
+  return (
+   <div>
+     <h1> Conditional Rendering Example...</h1>
+
+     <DisplayMessage isLoggedIn = {this.state.isLoggedIn}/>
+     {
+         (this.state.isLoggedIn) ? (<DisplayLogoutButton handleLogOut = {this.handleLogOut} />):(<DisplayLoginButton handleLogin = {this.handleLogin} />)
+ 
+     } 
+   </div> 
+  ); 
+  }
+}
+
+export default App;

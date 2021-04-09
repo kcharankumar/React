@@ -1,0 +1,40 @@
+ 
+import React  from 'react';
+import './App.css';
+ 
+
+//A state is a const or read-only data.
+//The state name is defined to Charan initially.  On click of a button, the state is changed 
+// Charan Kumar for the state variable name.
+
+class App extends React.Component
+{
+  constructor (props)
+  {
+    super (props)
+
+    this.state = {
+      name : 'Charan' 
+    }
+    
+    this.updateState = this.updateState.bind(this);
+  }
+ 
+   updateState()
+   {
+     this.setState({name:'Charan Kumar'});
+   }
+
+render() {
+  return( 
+      <div>  
+          <h2> State is a const and read-only data. It can be changed using setState().</h2> 
+          <h2>State or content of a variable is changed on click of a button </h2>
+          <h2> My name is {this.state.name}</h2>
+          <button onClick={this.updateState}> Change State </button>
+      </div> 
+  );
+}
+}
+
+export default App;

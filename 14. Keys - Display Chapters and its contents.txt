@@ -1,0 +1,65 @@
+ import React  from 'react';
+import './App.css';
+  
+ /*
+    In the functional Component DisplayChapters, two constants are defined.  They are titleBar and ChapterData.  
+    titleBar  iterates through the list and displays Chapter Topic.  
+    chapterData const will have Chapter number, chapter topic, chapter Information about the topic.
+    In the return function of DisplayChapters(), both these constant contents are displayed.
+    App component defines the List, sends this list as props to DisplayChapters() functional component.
+*/
+function DisplayChapters(props)
+{
+  const MyList = props.MyList;
+
+   const titleBar = (
+     <div>
+        <h1>Table of Contents </h1>
+        <ol>
+              { MyList.map ( (ChapterTitle) =>  <li key={ChapterTitle.id.toString()}> {ChapterTitle.Chapter}</li> )}
+        </ol>
+   </div>    
+   );
+
+   const chapterData = (
+      <ul>
+         <h1> Detailed Content </h1>
+         {  MyList.map ( (ChapterInfo) => 
+             <div>              
+               <li key={ChapterInfo.id.toString()}><b> Chapter - {ChapterInfo.id} -  {ChapterInfo.Chapter} </b> </li>
+               {ChapterInfo.Topic} 
+               <hr/>
+             </div>)
+             }
+      </ul>   
+    );
+
+    return (
+      <div>
+          {titleBar}
+          <hr/>
+           {chapterData}
+      </div>  
+
+    ) 
+}
+
+
+ class App extends React.Component {   
+render() {
+  const MyList = [{"id":1, "Chapter":"Introduction to React", "Topic":"React contains JSX and very simple and easy to learn"},
+                  {"id":2, "Chapter":"Props and State",       "Topic":"Props are arguments to the function and state maintains the state of the variable"},
+                  {"id":3, "Chapter":"Forms",                 "Topic":"Forms are very essential.  All the data from the user are carried out in forms"},
+                  {"id":4, "Chapter":"PropType checking",     "Topic":"Prop Type checking is important as it is important to check type of object before proceeding."},
+                  {"id":5, "Chapter":"Lists and Keys",        "Topic":"Lists contain the data and keys says which records are modified and requires re-rendering"}
+];
+    
+  return (
+   <div>
+    <DisplayChapters MyList= {MyList} />
+   </div> 
+  ); 
+  }
+}
+
+export default App;

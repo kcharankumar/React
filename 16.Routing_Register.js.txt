@@ -1,0 +1,40 @@
+import React, { useState } from "react"; 
+import { NavLink } from 'react-router-dom'
+  
+export default function Register() {
+const [UserID, setUserID]     = useState("");
+const [password, setPassword] = useState(" ");
+const [confirmPassword, setConfirmPassword] = useState(" ");
+
+function handleSubmit (event)
+{
+  //  alert ("Given Data :"+ UserID + " Password :"+password + " Confirm Password "+ confirmPassword);
+
+  if (password == confirmPassword)
+     alert ("User ID "+ UserID + " Is registered")
+  else 
+     alert ("User not registered.  Reason is : Password and confirm password is not same...")
+
+    event.preventDefault(); //Prevents refreshing the screen...Uncomment this line and check it.
+}
+ 
+
+return(
+  <div>
+    <h1> Register Form </h1>
+
+    <form onSubmit={handleSubmit}>
+          User ID :   <input type="text" value={UserID} onChange={ (e) => setUserID(e.target.value)}/> <br/><br/>
+        
+          Password : <input type="text" value={password} onChange={ (e) => setPassword(e.target.value)}/> <br/><br/>
+
+          Cofirm Password : <input type="text" value={confirmPassword} onChange={ (e) => setConfirmPassword(e.target.value)}/> <br/><br/>
+          <button type="Submit"> Register </button>  <br/><br/>
+
+          <NavLink to="/Login" exact activeStyle={{color:'magenta'}}>Login</NavLink>  
+          
+    </form>
+    </div>
+)
+
+}

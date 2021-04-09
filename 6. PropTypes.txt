@@ -1,0 +1,48 @@
+ 
+import React  from 'react';
+import './App.css';
+import PropTypes from 'prop-types'
+
+//A class Login is created receiving two parameters in constructor.
+// In the APp, Displaying the loginObj userId
+// In the defaultProps, loginObj variable is created and initialized.
+// propTypes, we are saying that loginObj should be an instance of Login.
+// Assign loginObj with string data type and check the output and in console.  
+//Console will give an error incase if the propTypes are not matching.
+//
+//for proptypes to work, install proptypes as
+// npm install --save prop-types
+
+class Login
+{
+  constructor (userId, password)
+  {
+    this.userId = userId;
+    this.password = password;
+  }
+}
+
+class App extends React.Component
+{      
+ 
+render() {
+  return( 
+      <div>  
+          <h2>{this.props.loginObj.userId}</h2> 
+      </div> 
+  );
+}
+
+}
+App.defaultProps = {
+   loginObj : new Login ('charan','admin')
+   
+   //uncomment this line and check in chrome console to see the error that proptypes are not matching.
+   //loginObj:'test' 
+}
+
+App.propTypes = {  
+  loginObj: PropTypes.instanceOf (Login) 
+}
+
+export default App;

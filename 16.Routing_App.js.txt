@@ -1,0 +1,19 @@
+ import React  from 'react'; 
+ import Login1 from './Login'
+
+ /*    
+  When the program is loaded, it displays Login form.
+*/
+
+ class App extends React.Component {    
+
+render() {
+  return(
+    
+    <Login1 />
+  );
+}
+
+}
+
+export default App;

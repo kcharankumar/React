@@ -1,0 +1,77 @@
+ 
+import React  from 'react';
+import './App.css';
+
+//In the App, 4 records are declared in json format and in render() DisplayName component is called.
+//DisplayName component just displays a header.
+// In the render() of App, every record of the json data is sent to DisplayData component.
+// In the DisplayData component, received record data id and name is displayed as a table.
+
+class App extends React.Component
+{
+ constructor()
+ {
+   super();
+
+   this.state = 
+   {
+     data:
+     [
+      { "id":101, "name":"Shiva", "dept":"IT", "designation":"IT Manager"}, 
+      { "id":102, "name":"Deva  ",   "dept":"IT", "designation":"IT Manager"},
+      { "id":103, "name":"Charan", "dept":"IT", "designation":"IT Manager"},
+       { "id":104, "name":"Sharan",  "dept":"IT", "designation":"IT Manager"}
+     ]
+   }
+ } //End of constructor
+
+ render()
+ {
+   return( 
+     <div>
+        <DisplayName/>
+        <ul>
+          {this.state.data.map((item) => <DisplayData data={item} />)}
+        </ul>
+     </div>
+   );
+ }
+}
+
+class DisplayName extends React.Component
+{
+  render(){
+    return(
+     <div>
+         <h5> A better table can be displayed using ReactTable...</h5>
+         <h1> Employee details..</h1>
+         
+     </div>
+    );
+  } 
+}
+
+class DisplayData extends React.Component
+{
+  render(){
+    return(
+     <div>
+        <table border="1">
+            <tr>
+             <td> {this.props.data.id}           </td>
+             <td> {this.props.data.name}         </td>
+           </tr>  
+          
+        </table>  
+
+
+     </div>
+    );
+  } 
+
+
+}
+
+
+ 
+export default App;
