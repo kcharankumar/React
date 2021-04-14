@@ -1,0 +1,9 @@
+1. Copy index.js, App.js and app.css in the src folder.
+2. Create components directory and copy
+    1. add-tutorials.component.js
+    2. tutorial-list.component.js
+    3. tutorial.component.js
+
+3. Create Entity folder and copy Tutorials.js into it.
+
+4. Backend -- Spring REST -- Spring_tutorialController.java or open the project under C:\Java\edu\level-3\Spring_Boot\SpringBootDemo and run the project.

@@ -1,0 +1,176 @@
+package SringBootDemo.SpringBootDemo.com.sunsoft.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import SringBootDemo.SpringBootDemo.Entity.Employee;
+import SringBootDemo.SpringBootDemo.Entity.Tutorials;
+
+@RestController
+@CrossOrigin(origins="http://localhost:3000")
+@RequestMapping ("/MyTutorial")
+public class TutorialController {
+	
+	static List<Tutorials> tutorialLst; 
+
+	
+	TutorialController()
+	{
+		tutorialLst = new ArrayList<Tutorials>();
+		Tutorials tutorialObj1 = new Tutorials (1, "Introduction to Java", "Information on Java", false, true);
+		Tutorials tutorialObj2 = new Tutorials (2, "Introduction to React", "Information on React", false, true);
+		Tutorials tutorialObj3 = new Tutorials (3, "Introduction to Angular", "Information on Angular", false, true);
+		
+		tutorialLst.add (tutorialObj1);
+		tutorialLst.add (tutorialObj2);
+		tutorialLst.add (tutorialObj3);
+	}
+	
+	
+	@GetMapping (path="/getAllTutorials") 
+	public List<Tutorials> getAllTutorialData ()
+	{
+		 System.out.println("getTotorialData() is executed..."); 
+		 
+  		 return tutorialLst;
+		 
+	}
+	
+	@GetMapping (path="/getTutorialByID") 
+	public  Tutorials  getTutorialDataByID (@RequestParam ("id") int id)
+	{
+		 System.out.println("getTutorialDataByID() is executed...Received data is "+id);	
+		 
+		 Tutorials tutorialObjTemp = null; 
+		 
+ 
+			for (Tutorials tutorialObj : tutorialLst ) 
+			{
+				if (tutorialObj.getId() == id)
+				{
+					tutorialObjTemp = tutorialObj; 
+				}
+					
+			}
+			
+			return tutorialObjTemp;
+		 
+	}
+	
+	
+	@GetMapping (path="/getTutorialByTitle") 
+	public List<Tutorials> getTutorialDataByTitle (@RequestParam ("title") String title)
+	{
+		 System.out.println("getTutorialDataByTitle() is executed...Received data is "+title);	
+		 
+		 List<Tutorials> tutorialLstTemporary = new ArrayList<Tutorials>(); 
+		 
+ 
+			for (Tutorials tutorialObj : tutorialLst ) 
+			{
+				if (tutorialObj.getTitle().contains(title))
+					tutorialLstTemporary.add(tutorialObj);
+					
+			}
+			
+			return tutorialLstTemporary;
+		 
+	} 
+	
+	@PostMapping (path="/tutorials") 
+	public Tutorials addTutorialData (@RequestBody Tutorials tutorialsObj)
+	{
+		System.out.println("addTutorialData() is executed...Data received from Angular is "+tutorialsObj);
+	 
+		int count = tutorialLst.size();
+		tutorialsObj.setId(++count);
+		
+		tutorialLst.add (tutorialsObj);
+		
+		
+		return tutorialsObj;
+	} 
+	
+	
+	
+	
+	@PutMapping (path="/UpdateTutorials/{id}") 
+	public Tutorials updateTutorials (@PathVariable ("id")int id, @RequestBody Tutorials tutorialsObj)
+	{ 
+		 System.out.println("updateTutorials() is executed...Received data is "+id + " And object is "+tutorialsObj);	
+		 
+		 Tutorials tutorialObjTemp = null; 
+		 int count=0;
+		 
+
+			for (Tutorials tutorialObjIter : tutorialLst ) 
+			{
+				
+				if (tutorialObjIter.getId() == id)
+				{
+					tutorialObjTemp = tutorialsObj;
+					tutorialLst.set(count, tutorialsObj);
+					 
+				}
+				++count;					
+			} 
+			
+			return tutorialObjTemp;
+	} 
+	
+	
+	
+	@DeleteMapping (path="/DeleteAll") 
+	public String deleteAllData ()
+	{
+		 
+		System.out.println("deleteAllData() is executed...");
+		tutorialLst.clear();
+ 
+		String str = "Removed all the data successfully";
+		
+		return str;
+		
+		 
+	} 
+	
+	
+	@DeleteMapping (path="/DeleteTutorials") 
+	public String deleteByID(@RequestParam ("id") int id)
+	{
+		 
+		System.out.println("deleteByID() is executed...Received data is "+id); 
+		
+		 int count=0;
+		 
+
+		for (Tutorials tutorialObjIter : tutorialLst ) 
+		{
+			
+			if (tutorialObjIter.getId() == id)			 		
+				break;
+			 
+			++count;					
+		} 
+ 
+		tutorialLst.remove(count);
+		String str = "success";
+		
+		return str;
+		
+		 
+	} 
+	
+
+}
