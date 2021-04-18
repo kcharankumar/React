@@ -1,0 +1,5 @@
+1. Open React Project and copy all the files under src directory in to src directory of react project.  Copy Employee_CRUD and Services directory also under src of react project.
+
+2. Open the spring rest project under  C:\Java\edu\level-3\Spring_Boot\SpringBootDemo\src\main\java\SringBootDemo and run the project or copy Employee_CRUDController.java in any spring boot application and make it run under 8080 port.  
+
+With this project should work.
